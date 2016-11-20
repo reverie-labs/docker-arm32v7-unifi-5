@@ -17,30 +17,30 @@ This mode is useful since the Controller's startup will be handled at the Pi's s
 
 0. If you don't have a swarm created, create it:
 
-```
-$ docker swarm create
-```
+  ```
+  docker swarm create
+  ```
 
 1. Create the `unifi` docker service on the swarm:
 
-```
-./create-docker-service.sh
-```
+  ```
+  ./create-docker-service.sh
+  ```
 
 2. Follow the usual steps to setup your UniFi Controller. 
 You mostly want to connect to https://<your.pi.ip.address>:8443/ . Don't forget it's supposed to be https, not http. Keep in mind that running this setup in this mode will NOT allow L2 adoption of UAPs (that is, finding an AP via network broadcasts). You either have to run it in host networking mode (only when running the adoption steps, see below) or setup L3 adoption (by setting DHCP option 43, for example).
 
 3. Stop the docker service if needed:
 
-```
-docker service scale unifi=0
-```
+  ```
+  docker service scale unifi=0
+  ```
 
 4. Start it again when desired:
 
-```
-docker service scale unifi=1
-```
+  ```
+  docker service scale unifi=1
+  ```
 
 Keep in mind that the software takes about 2 minutes to startup.
 
@@ -56,26 +56,26 @@ To run it in this mode, follow this steps:
 
 1. If your Docker service is running, stop it:
 
-```
-docker service scale unifi=0
-```
+  ```
+  docker service scale unifi=0
+  ```
 
 2. Bring up the container in host networking mode, using the provided "docker-compose.yml" file. This will make use of the exact same data volumes.
 
-```
-docker-compose up -d unifi
-```
+  ```
+  docker-compose up -d unifi
+  ```
 
 3. Connect to your controller as normal. It should work to the very same ports. Run your adoption procedure via L2, as if the software was installed in the Raspberry Pi itself.
 
 4. Bring the container down
 
-```
-docker-compose down unifi
-```
+  ```
+  docker-compose down unifi
+  ```
 
 5. Start the persistent swarm service once again, if you have it set up.
 
-```
-docker service scale unifi=1
-```
+  ```
+  docker service scale unifi=1
+  ```
