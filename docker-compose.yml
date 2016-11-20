@@ -1,0 +1,36 @@
+version: '2'
+services:
+  unifi:
+    image: reverie/rpi-unifi-5
+    build: .
+    expose:
+    - 8080/tcp
+    - 8081/tcp
+    - 8443/tcp
+    - 8843/tcp
+    - 8880/tcp
+    - 3478/udp
+    volumes:
+    - unifi-var_lib_unifi:/var/lib/unifi
+    - unifi-var_log_unifi:/var/log/unifi
+    - unifi-var_run_unifi:/var/run/unifi
+    - unifi-usr_lib_unifi_work:/usr/lib/unifi/work
+    - unifi-usr_lib_unifi_data:/usr/lib/unifi/data
+    network_mode: host
+
+volumes:
+  unifi-var_lib_unifi:
+      external:
+        name: unifi-var_lib_unifi
+  unifi-var_log_unifi:
+      external:
+        name: unifi-var_log_unifi
+  unifi-var_run_unifi:
+      external:
+        name: unifi-var_run_unifi
+  unifi-usr_lib_unifi_work:
+      external:
+        name: unifi-usr_lib_unifi_work
+  unifi-usr_lib_unifi_data:
+      external:
+        name: unifi-usr_lib_unifi_data
