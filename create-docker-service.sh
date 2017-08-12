@@ -22,4 +22,4 @@ docker service create \
   --mount type=volume,source=unifi-var_lib_unifi,destination=/var/lib/unifi \
   --mount type=volume,source=unifi-var_run_unifi,destination=/var/run/unifi \
   --mount type=volume,source=unifi-var_log_unifi,destination=/var/log/unifi \
-  reverie/rpi-unifi-5:latest
+  reverie/armhf-unifi-5:latest
